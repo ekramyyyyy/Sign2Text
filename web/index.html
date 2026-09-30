@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign → Text</title>
+<style>
+  :root { color-scheme: dark; --bg:#0f1115; --card:#181b22; --fg:#e8eaf0; --mut:#8b90a0; --acc:#4ade80; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; display:grid; gap:14px; }
+  h1 { font-size: 1.2rem; margin: 4px 0; }
+  .stage { position:relative; background:#000; border-radius:14px; overflow:hidden; aspect-ratio: 4/3; }
+  .stage video, .stage canvas { position:absolute; inset:0; width:100%; height:100%; transform: scaleX(-1); object-fit: cover; } /* mirror for display only; model sees the raw frame */
+  .badge { position:absolute; top:10px; left:10px; z-index:2; background:#000a; padding:4px 10px; border-radius:99px; font-size:.85rem; }
+  .badge.live { color: var(--acc); }
+  .card { background:var(--card); border-radius:14px; padding:14px 16px; }
+  .label { color:var(--mut); font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+  #tokens { display:flex; flex-wrap:wrap; gap:8px; min-height:34px; }
+  .chip { background:#22283a; border-radius:99px; padding:5px 12px; font-size:.95rem; }
+  .chip small { color:var(--mut); margin-left:6px; }
+  #en { font-size:1.35rem; min-height:1.8rem; }
+  #ar { font-size:1.5rem; min-height:2rem; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; }
+  button { background:#2a3145; color:var(--fg); border:0; border-radius:10px; padding:10px 16px; font-size:1rem; cursor:pointer; }
+  button.primary { background:var(--acc); color:#04210f; font-weight:600; }
+  #status { color:var(--mut); font-size:.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sign → Text <span id="status"></span></h1>
+  <div class="stage">
+    <span class="badge" id="badge">camera off</span>
+    <video id="video" playsinline muted></video>
+    <canvas id="overlay"></canvas>
+  </div>
+  <div class="row">
+    <button class="primary" id="start">Start camera</button>
+    <button id="go">Translate now (space)</button>
+    <button id="clear">Clear (c)</button>
+  </div>
+  <div class="card"><div class="label">Recognized signs</div><div id="tokens"></div></div>
+  <div class="card"><div class="label">English</div><div id="en"></div></div>
+  <div class="card"><div class="label">العربية</div><div id="ar" dir="rtl" lang="ar"></div></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

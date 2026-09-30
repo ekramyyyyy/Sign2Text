@@ -1,0 +1,17 @@
+# Install torch first from https://pytorch.org (pick your CUDA/CPU build), then:
+numpy
+opencv-python
+mediapipe
+transformers>=4.40
+pandas
+tqdm
+pillow
+google-genai        # Gemini (free tier via Google AI Studio)
+openai              # OpenAI-compatible client: Qwen (DashScope / OpenRouter / Ollama)
+arabic-reshaper     # optional: Arabic text on the video overlay
+onnx                # only for export_onnx.py
+onnxruntime         # only for export_onnx.py
+onnxscript           # required by export_onnx.py (dynamo=True exporter)
+python-bidi         # optional: Arabic text on the video overlay
+
+remotezip>=0.12.3       # range-read the official ASL Citizen ZIP without downloading it all

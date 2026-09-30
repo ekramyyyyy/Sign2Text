@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+.git/
+.ipynb_checkpoints/
+*.pyc
+*.pyo
+*.pyd
+
+requirements.txt
+train.py
+dataset.py
+prepare_asl_citizen.py
+prepare_wlasl.py
+download_models.py
+extract_keypoints.py
+backup.py
+check_parity.py
